@@ -39,21 +39,14 @@ end
 
 --- install_autosync creates autocommand to trigger packer.sync() on plugins
 --- defintion file edit.
--- @param packer packer: Loaded packer.nvim module.
 -- @param plugins_file string: Plugin defintion file name.
-function M.install_autosync(packer, plugins_file)
-  local group_name = "packer_refresh"
-  vim.api.nvim_create_augroup(group_name, { clear = true })
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    group = group_name,
-    pattern = plugins_file,
-    desc = "Trigger packer.sync() on plugins defintion file edit.",
-    callback = function(event)
-      packer.reset()
-      vim.cmd(string.format("luafile %s", event.file))
-      packer.sync()
-    end
-  })
+function M.install_autosync(plugins_file)
+  vim.cmd(string.format([[
+    augroup packer_autosync
+      autocmd!
+      autocmd BufWritePost %s source <afile> | PackerSync
+    augroup end
+  ]], plugins_file))
 end
 
 return M
