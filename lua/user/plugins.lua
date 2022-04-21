@@ -1,9 +1,9 @@
-require("user.tools.packer").ensure_install()
-require("user.tools.packer").install_autosync("plugins.lua")
+require("user.tools.packer"):ensure_install():install_autosync("plugins.lua")
 
 local ok, packer = pcall(require, "packer")
 if not ok then
   vim.notify("Error loading packer.nvim", vim.log.levels.ERROR, {})
+  return nil
 end
 
 packer.init {

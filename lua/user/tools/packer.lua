@@ -1,38 +1,39 @@
-local M = {}
+local PackerTool = {}
 
-M.BOOTSTRAP = 0
-M.INSTALL_PATH = "/site/pack/packer/start/packer.nvim"
-M.REPOSITORY = "https://github.com/wbthomason/packer.nvim"
+PackerTool.BOOTSTRAP = 0
+PackerTool.INSTALL_PATH = "site/pack/packer/start/packer.nvim"
+PackerTool.REPOSITORY = "https://github.com/wbthomason/packer.nvim"
 
 --- ensure_install makes sure that packer.nvim is installed.
-function M.ensure_install()
-  if M.is_installed() then
-    return
+function PackerTool.ensure_install(self)
+  if self:is_installed() then
+    return self
   end
-  M.install()
+  self:install()
   vim.notify("Installed packer.nvim. Restart Neovim.", vim.log.levels.WARN, {})
+  return self
 end
 
 --- is_installed checks if expected packer.nvim installation directory exists.
-function M.is_installed()
-  return vim.fn.empty(vim.fn.glob(M.install_path())) ~= 1
+function PackerTool.is_installed(self)
+  return vim.fn.empty(vim.fn.glob(self:install_path())) ~= 1
 end
 
 --- install_path computes expected packer.nvim installation directory.
-function M.install_path()
-  return vim.fn.stdpath("data") .. M.INSTALL_PATH
+function PackerTool.install_path(self)
+  return string.format("%s/%s", vim.fn.stdpath("data"), self.INSTALL_PATH)
 end
 
 --- install clones packer.nvim git repository into the expected installation
 --- directory.
-function M.install()
-  M.BOOTSTRAP = vim.fn.system {
+function PackerTool.install(self)
+  self.BOOTSTRAP = vim.fn.system {
     "git",
     "clone",
     "--depth",
     "1",
-    M.REPOSITORY,
-    M.install_path()
+    self.REPOSITORY,
+    self:install_path()
   }
 end
 
@@ -40,13 +41,14 @@ end
 --- install_autosync creates autocommand to trigger packer.sync() on plugins
 --- defintion file edit.
 -- @param plugins_file string: Plugin defintion file name.
-function M.install_autosync(plugins_file)
+function PackerTool.install_autosync(self, plugins_file)
   vim.cmd(string.format([[
     augroup packer_autosync
       autocmd!
       autocmd BufWritePost %s source <afile> | PackerSync
     augroup end
   ]], plugins_file))
+  return self
 end
 
-return M
+return PackerTool
