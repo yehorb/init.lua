@@ -15,6 +15,17 @@ packer.init {
 }
 
 return packer.startup(function(use)
+  use "Xuyuanp/nerdtree-git-plugin"
+  use "airblade/vim-gitgutter"
   use "arcticicestudio/nord-vim"
+  use "hashivim/vim-terraform"
+  use "kevinoid/vim-jsonc"
+  use "scrooloose/nerdtree"
+  use "sheerun/vim-polyglot"
+  use "tpope/vim-dadbod"
+  use "tpope/vim-fugitive"
+  use "tpope/vim-surround"
+  use "tpope/vim-unimpaired"
+  use "vim-airline/vim-airline"
   use "wbthomason/packer.nvim"
 end)

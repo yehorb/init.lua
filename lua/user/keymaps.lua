@@ -1,5 +1,10 @@
-local keymap = vim.api.nvim_set_keymap
-local options = { noremap = true, silent = true }
+local Keymap = {
+  keymap = vim.keymap.set,
+  options = { noremap = true, silent = true },
+}
+
+local keymap = Keymap.keymap
+local options = Keymap.options
 
 keymap("", "\\", "<NOP>", options)
 vim.g.mapleader = "\\"
@@ -18,3 +23,5 @@ keymap("v", ">", ">gv", options)
 keymap("v", "p", '"_dP"', options)
 
 keymap("t", "<Leader><Esc>", "<C-\\><C-n>", options)
+
+return Keymap
