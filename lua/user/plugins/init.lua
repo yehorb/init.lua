@@ -1,4 +1,9 @@
-require("user.tools.packer"):ensure_install():install_autosync("plugins.lua")
+pcall(require, "impatient")
+
+require("user.tools.packer")
+  :ensure_install()
+  :load()
+  :install_autosync("plugins.lua")
 
 local ok, packer = pcall(require, "packer")
 if not ok then
@@ -20,6 +25,7 @@ return packer.startup(function(use)
   use "arcticicestudio/nord-vim"
   use "hashivim/vim-terraform"
   use "kevinoid/vim-jsonc"
+  use "lewis6991/impatient.nvim"
   use "scrooloose/nerdtree"
   use "sheerun/vim-polyglot"
   use "tpope/vim-dadbod"
@@ -27,5 +33,9 @@ return packer.startup(function(use)
   use "tpope/vim-surround"
   use "tpope/vim-unimpaired"
   use "vim-airline/vim-airline"
-  use "wbthomason/packer.nvim"
+  use({ "wbthomason/packer.nvim", opt = true, event = "VimEnter" })
+
+  if require("user.tools.packer"):is_bootstrap() then
+    packer.sync()
+  end
 end)
