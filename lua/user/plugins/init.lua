@@ -2,8 +2,8 @@ pcall(require, "impatient")
 
 require("user.tools.packer")
   :ensure_install()
-  :load()
-  :install_autosync("*/plugins/init.lua")
+  :packadd()
+  :install_autosync("*/plugins/*.lua")
 
 local ok, packer = pcall(require, "packer")
 if not ok then
@@ -33,7 +33,7 @@ return packer.startup(function(use)
   use "tpope/vim-surround"
   use "tpope/vim-unimpaired"
   use "vim-airline/vim-airline"
-  use({ "wbthomason/packer.nvim", opt = true, event = "VimEnter" })
+  use { "wbthomason/packer.nvim", opt = true, event = "VimEnter" }
 
   if require("user.tools.packer"):is_bootstrap() then
     packer.sync()
