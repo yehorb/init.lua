@@ -5,6 +5,7 @@ local options = {
   shiftwidth = 2,
   fileencoding = "utf-8",
   fileformat = "unix",
+  fileformats = { "unix", "dos" },
   guifont = "Iosevka Term SS08",
   ignorecase = true,
   smartcase = true,
