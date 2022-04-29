@@ -8,6 +8,7 @@ local options = {
   fileformats = { "unix", "dos" },
   guifont = "Iosevka Term SS08",
   ignorecase = true,
+  infercase = true,
   smartcase = true,
   list = true,
   listchars = { eol = "¶", tab = "→·", trail = "·", nbsp = "+" },
