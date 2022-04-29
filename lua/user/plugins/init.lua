@@ -3,7 +3,7 @@ pcall(require, "impatient")
 require("user.tools.packer")
   :ensure_install()
   :load()
-  :install_autosync("plugins.lua")
+  :install_autosync("*/plugins/init.lua")
 
 local ok, packer = pcall(require, "packer")
 if not ok then
