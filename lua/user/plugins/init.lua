@@ -34,6 +34,7 @@ return packer.startup(function(use)
   use "tpope/vim-unimpaired"
   use "vim-airline/vim-airline"
   use { "wbthomason/packer.nvim", opt = true, event = "VimEnter" }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   if require("user.tools.packer"):is_bootstrap() then
     packer.sync()
