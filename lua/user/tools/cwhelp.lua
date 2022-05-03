@@ -1,3 +1,5 @@
+local keymap = require("user.keymap")
+
 local cwhelp = {}
 
 --- help opens vim help pane for the word under the cursor, quoted.
@@ -18,7 +20,7 @@ end
 
 --- install_keymap created keymap to CwHelp command.
 function cwhelp.install_keymap(self)
-  vim.keymap.set("n", "<leader>ch", ":CwHelp<CR>")
+  keymap.set("n", "<leader>ch", ":CwHelp<CR>", keymap.options)
 end
 
 return cwhelp

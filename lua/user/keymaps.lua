@@ -1,27 +1,24 @@
-local Keymap = {
-  keymap = vim.keymap.set,
+local keymap = {
+  set = vim.keymap.set,
   options = { noremap = true, silent = true },
 }
 
-local keymap = Keymap.keymap
-local options = Keymap.options
-
-keymap("", "\\", "<NOP>", options)
+keymap.set("", "\\", "<NOP>", keymap.options)
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
-keymap("", "Y", '"*y', options)
+keymap.set("", "Y", '"*y', keymap.options)
 
-keymap("n", "<C-h>", "<C-w>h", options)
-keymap("n", "<C-j>", "<C-w>j", options)
-keymap("n", "<C-k>", "<C-w>k", options)
-keymap("n", "<C-l>", "<C-w>l", options)
+keymap.set("n", "<C-h>", "<C-w>h", keymap.options)
+keymap.set("n", "<C-j>", "<C-w>j", keymap.options)
+keymap.set("n", "<C-k>", "<C-w>k", keymap.options)
+keymap.set("n", "<C-l>", "<C-w>l", keymap.options)
 
-keymap("v", "<", "<gv", options)
-keymap("v", ">", ">gv", options)
+keymap.set("v", "<", "<gv", keymap.options)
+keymap.set("v", ">", ">gv", keymap.options)
 
-keymap("v", "p", '"_dP"', options)
+keymap.set("v", "p", '"_dP"', keymap.options)
 
-keymap("t", "<Leader><Esc>", "<C-\\><C-n>", options)
+keymap.set("t", "<Leader><Esc>", "<C-\\><C-n>", keymap.options)
 
-return Keymap
+return keymap
