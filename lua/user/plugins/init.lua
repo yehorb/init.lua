@@ -36,6 +36,10 @@ return packer.startup(function(use)
   use { "wbthomason/packer.nvim", opt = true, event = "VimEnter" }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+  -- LSP {{{
+  use "neovim/nvim-lspconfig"
+  -- }}}
+
   if require("user.tools.packer"):is_bootstrap() then
     packer.sync()
   end
