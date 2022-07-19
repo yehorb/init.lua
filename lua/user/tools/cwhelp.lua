@@ -1,4 +1,4 @@
-local keymap = require("user.keymap")
+local keymap = require("user.keymaps")
 
 local cwhelp = {}
 
