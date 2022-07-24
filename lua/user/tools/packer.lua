@@ -1,19 +1,19 @@
 local packer_tool = {}
 
-packer_tool.AUGROUP = "packer_autosync"
-packer_tool.BOOTSTRAP = 0
-packer_tool.INSTALL_MESSAGE = (
+local AUGROUP = "Packer"
+local BOOTSTRAP = 0
+local INSTALL_MESSAGE = (
   "Installed packer.nvim. Restart Neovim to correctly load plugins."
 )
-packer_tool.INSTALL_PATH = "site/pack/packer/opt/packer.nvim"
-packer_tool.REPOSITORY = "https://github.com/wbthomason/packer.nvim"
+local INSTALL_PATH = "site/pack/packer/opt/packer.nvim"
+local REPOSITORY = "https://github.com/wbthomason/packer.nvim"
 
 function packer_tool.ensure_install(self)
   if self:is_installed() then
     return self
   end
   self:install()
-  vim.notify(self.INSTALL_MESSAGE, vim.log.levels.WARN, {})
+  vim.notify(INSTALL_MESSAGE, vim.log.levels.WARN, {})
   return self
 end
 
@@ -22,18 +22,18 @@ function packer_tool.is_installed(self)
 end
 
 function packer_tool.install_path(self)
-  return string.format("%s/%s", vim.fn.stdpath("data"), self.INSTALL_PATH)
+  return string.format("%s/%s", vim.fn.stdpath("data"), INSTALL_PATH)
 end
 
 --- install clones packer.nvim git repository into the expected installation
 --- directory.
 function packer_tool.install(self)
-  self.BOOTSTRAP = vim.fn.system {
+  BOOTSTRAP = vim.fn.system {
     "git",
     "clone",
     "--depth",
     "1",
-    self.REPOSITORY,
+    REPOSITORY,
     self:install_path()
   }
 end
@@ -47,9 +47,9 @@ end
 --- defintion file edit.
 -- @param plugins_file string: Plugin defintion file name.
 function packer_tool.install_autosync(self, plugins_file)
-  vim.api.nvim_create_augroup(self.AUGROUP, { clear = true })
+  vim.api.nvim_create_augroup(AUGROUP, { clear = true })
   vim.api.nvim_create_autocmd("BufWritePost", {
-      group = self.AUGROUP,
+      group = AUGROUP,
       pattern = plugins_file,
       command = "source <afile> | PackerSync",
   })
@@ -57,7 +57,7 @@ function packer_tool.install_autosync(self, plugins_file)
 end
 
 function packer_tool.is_bootstrap(self)
-  return self.BOOTSTRAP ~= 0
+  return BOOTSTRAP ~= 0
 end
 
 return packer_tool

@@ -1,6 +1,1 @@
-require "user.colors"
-require "user.commands"
-require "user.keymaps"
-require "user.options"
-require "user.plugins"
-require "user.plugins.options"
+require "user"
