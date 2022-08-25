@@ -6,6 +6,8 @@ local options = {
   listchars = { eol = "↵", tab = "→·", trail = "·", nbsp = "+" },
   splitbelow = true,
   splitright = true,
+  linebreak = true,
+  showbreak = "↳ ",
 }
 
 if vim.fn.has("termguicolors") then
