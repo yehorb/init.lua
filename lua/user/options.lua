@@ -4,6 +4,8 @@ local options = {
   fileformats = { "unix", "dos" },
   list = true,
   listchars = { eol = "↵", tab = "→·", trail = "·", nbsp = "+" },
+  splitbelow = true,
+  splitright = true,
 }
 
 if vim.fn.has("termguicolors") then
