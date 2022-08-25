@@ -17,3 +17,5 @@ end
 for option, value in pairs(options) do
   vim.opt[option] = value
 end
+
+vim.cmd "filetype plugin indent on"
