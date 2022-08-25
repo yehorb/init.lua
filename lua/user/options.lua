@@ -3,7 +3,7 @@ local options = {
   fileformat = "unix",
   fileformats = { "unix", "dos" },
   list = true,
-  listchars = { eol = "¶", tab = "→·", trail = "·", nbsp = "+" },
+  listchars = { eol = "↵", tab = "→·", trail = "·", nbsp = "+" },
 }
 
 if vim.fn.has("termguicolors") then
